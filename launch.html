@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>糖尿病用藥決策支援系統 - Launch</title>
+    <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+</head>
+<body>
+    <script>
+        FHIR.oauth2.authorize({
+            // 1. Client ID: 根據文件，需填入向 THAS 申請後取得的識別碼
+            "clientId": "diabetes-cdss-app", 
+
+            // 2. Scopes: 必須包含 launch、patient 讀取權限以及使用者資訊
+            "scope": "launch patient/*.read openid fhirUser",
+
+            // 3. Redirect URI: 授權成功後跳回的主程式頁面
+            "redirectUri": "APP.html", 
+
+            // 4. Iss: 在正式 Launch 流程中，這個值會由 HIS 帶入，若手動測試可指定測試環境
+            "completeInTarget": true
+        });
+    </script>
+    <p>正在重新導向至 THAS Sandbox 授權頁面...</p>
+</body>
+</html>
